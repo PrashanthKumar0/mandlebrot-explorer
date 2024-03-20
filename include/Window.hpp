@@ -1,6 +1,7 @@
 #ifndef _WINDOW_HPP_
 #define _WINDOW_HPP_
 
+#include <GLFW/glfw3.h>
 #include <string>
 
 namespace mbe
@@ -13,7 +14,7 @@ namespace mbe
         auto sync() -> void;
 
     private:
-        
+        GLFWwindow *mGLFWwindow{nullptr};
     };
 }
 #endif // _WINDOW_HPP_
