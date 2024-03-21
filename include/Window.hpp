@@ -14,7 +14,7 @@ namespace mbe
         auto isOpen() -> bool;
         auto sync() -> void;
         auto isKeyPressed(int GLFW_KEY_NAME) -> bool;
-        
+        auto time() -> double;
     private:
         GLFWwindow *mGLFWwindow{nullptr};
     };

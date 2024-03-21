@@ -49,3 +49,7 @@ bool mbe::Window::isKeyPressed(int GLFW_KEY_NAME)
 {
     return glfwGetKey(mGLFWwindow, GLFW_KEY_NAME) == GLFW_PRESS;
 }
+
+double mbe::Window::time(){
+    return glfwGetTime();
+}

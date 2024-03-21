@@ -14,7 +14,7 @@ namespace mbe
     public:
         Screen();
         auto render() -> void;
-        auto handleInputs(Window& window) -> void;
+        auto handleInputs(Window& window, double dt) -> void;
 
     private:
     private:

@@ -57,13 +57,13 @@ float lerp(float x0, float x1, float t)
 // TODO : remove this
 // #include <iostream>
 
-void mbe::Screen::handleInputs(Window &window)
+void mbe::Screen::handleInputs(Window &window, double dt)
 {
 
-    const double translateFac{mZoom * 0.1};
+    const double translateFac{mZoom * dt * 10.0};
     const double zoomLerpFactor{0.01};
     const double translateLerpFactor{0.08};
-    const double zoomFactor{0.2};
+    const double zoomFactor{dt * 0.01};
 
     // TODO : remove these
     // system("cls");
@@ -76,7 +76,7 @@ void mbe::Screen::handleInputs(Window &window)
     }
     if (window.isKeyPressed(GLFW_KEY_X))
     {
-        mZoom = lerp(mZoom, mZoom / zoomFactor, zoomLerpFactor);
+        mZoom = lerp(mZoom, mZoom / zoomFactor * 0.0005, zoomLerpFactor);
     }
 
     if (window.isKeyPressed(GLFW_KEY_LEFT))
@@ -109,8 +109,11 @@ void mbe::Screen::handleInputs(Window &window)
     {
         mZoom = 2.0;
     }
-    for(auto& translateSc : mTranslate){
-        if(translateSc < -2.0) translateSc = -2.0;
-        if(translateSc > 2.0) translateSc = 2.0;
+    for (auto &translateSc : mTranslate)
+    {
+        if (translateSc < -2.0)
+            translateSc = -2.0;
+        if (translateSc > 2.0)
+            translateSc = 2.0;
     }
 }
