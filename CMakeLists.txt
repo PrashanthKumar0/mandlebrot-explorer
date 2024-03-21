@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_FLAGS -Wall)
 set(CMAKE_CXX_FLAGS -Wextra)
 set(CMAKE_CXX_FLAGS -pedantic-errors)
-# set(CMAKE_CXX_FLAGS -mwindows) 
+set(CMAKE_CXX_FLAGS -mwindows) 
 
 
 # build dependencies (vendor dir)

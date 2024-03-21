@@ -56,7 +56,7 @@ float lerp(float x0, float x1, float t)
 
 // Just for debugging
 // TODO : remove this
-#include <iostream>
+// #include <iostream>
 
 void mbe::Screen::handleInputs(Window &window)
 {
@@ -66,9 +66,9 @@ void mbe::Screen::handleInputs(Window &window)
     const double zoomFactor{0.2};
 
     // TODO : remove these
-    system("cls"); 
-    std::cout << "mZoom        : " << mZoom << '\n';
-    std::cout << "Translate    : " << mTranslate[0] << "," << mTranslate[1] << '\n';
+    // system("cls"); 
+    // std::cout << "mZoom        : " << mZoom << '\n';
+    // std::cout << "Translate    : " << mTranslate[0] << "," << mTranslate[1] << '\n';
 
     if (window.isKeyPressed(GLFW_KEY_Z))
     {
