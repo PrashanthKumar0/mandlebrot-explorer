@@ -48,12 +48,15 @@ void mbe::Screen::render()
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
-#include <iostream>
 
 float lerp(float x0, float x1, float t)
 {
     return x0 + (x1 - x0) * t;
 }
+
+// Just for debugging
+// TODO : remove this
+#include <iostream>
 
 void mbe::Screen::handleInputs(Window &window)
 {
@@ -62,7 +65,8 @@ void mbe::Screen::handleInputs(Window &window)
     const float lerpFactor{0.01};
     const float zoomFactor{0.2f};
 
-    system("cls");
+    // TODO : remove these
+    system("cls"); 
     std::cout << "mZoom        : " << mZoom << '\n';
     std::cout << "Translate    : " << mTranslate[0] << "," << mTranslate[1] << '\n';
 
