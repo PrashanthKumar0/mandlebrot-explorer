@@ -48,7 +48,6 @@ void mbe::Screen::render()
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
 
-
 float lerp(float x0, float x1, float t)
 {
     return x0 + (x1 - x0) * t;
@@ -62,39 +61,40 @@ void mbe::Screen::handleInputs(Window &window)
 {
 
     const double translateFac{mZoom * 0.1};
-    const double lerpFactor{0.01};
+    const double zoomLerpFactor{0.01};
+    const double translateLerpFactor{0.08};
     const double zoomFactor{0.2};
 
     // TODO : remove these
-    // system("cls"); 
+    // system("cls");
     // std::cout << "mZoom        : " << mZoom << '\n';
     // std::cout << "Translate    : " << mTranslate[0] << "," << mTranslate[1] << '\n';
 
     if (window.isKeyPressed(GLFW_KEY_Z))
     {
-        mZoom = lerp(mZoom, mZoom * zoomFactor, lerpFactor);
+        mZoom = lerp(mZoom, mZoom * zoomFactor, zoomLerpFactor);
     }
     if (window.isKeyPressed(GLFW_KEY_X))
     {
-        mZoom = lerp(mZoom, mZoom / zoomFactor, lerpFactor);
+        mZoom = lerp(mZoom, mZoom / zoomFactor, zoomLerpFactor);
     }
 
     if (window.isKeyPressed(GLFW_KEY_LEFT))
     {
-        mTranslate[0] += translateFac;
+        mTranslate[0] = lerp(mTranslate[0], mTranslate[0] + translateFac, translateLerpFactor);
     }
     if (window.isKeyPressed(GLFW_KEY_RIGHT))
     {
-        mTranslate[0] -= translateFac;
+        mTranslate[0] = lerp(mTranslate[0], mTranslate[0] - translateFac, translateLerpFactor);
     }
 
     if (window.isKeyPressed(GLFW_KEY_UP))
     {
-        mTranslate[1] -= translateFac;
+        mTranslate[1] = lerp(mTranslate[1], mTranslate[1] - translateFac, translateLerpFactor);
     }
     if (window.isKeyPressed(GLFW_KEY_DOWN))
     {
-        mTranslate[1] += translateFac;
+        mTranslate[1] = lerp(mTranslate[1], mTranslate[1] + translateFac, translateLerpFactor);
     }
 
     if (window.isKeyPressed(GLFW_KEY_R))
@@ -102,5 +102,15 @@ void mbe::Screen::handleInputs(Window &window)
         mZoom = 1.0f;
         mTranslate[0] = 0.0f;
         mTranslate[1] = 0.0f;
+    }
+
+    // constrain zoom and translate
+    if (mZoom > 2.0)
+    {
+        mZoom = 2.0;
+    }
+    for(auto& translateSc : mTranslate){
+        if(translateSc < -2.0) translateSc = -2.0;
+        if(translateSc > 2.0) translateSc = 2.0;
     }
 }
