@@ -1,22 +1,26 @@
 #version 330 core
 out vec3 fragColor;
+precision highp float;
 
 // Uniforms
-uniform vec2 uScreenRes;
-uniform vec2 uTranslate;
-uniform float uZoom;
+uniform highp vec2 uScreenRes;
+uniform highp vec2 uTranslate;
+uniform highp float uZoom;
 
-vec2 square(vec2 num){
+vec2 square(vec2 num)
+{
     // z = a + bi
     // z^2 = a^2  + 2abi - b^2
     return vec2(num.x * num.x - num.y * num.y , 2 * num.x * num.y);
 }
 
-bool isBounded(vec2 vec){
+bool isBounded(vec2 vec)
+{
     return vec.x * vec.x + vec.y * vec.y <= 5.0;
 }
 
-vec3 getColor(float iter){
+vec3 getColor(float iter)
+{
     if(iter <= 0.3) return vec3(0.0);
     // if(iter <= 0.3) return vec3(1.0,0.0,0.0);
     if(iter <= 0.6) return vec3(iter,1.0,0.0);
@@ -36,7 +40,8 @@ void main()
     
     float iter = 0;
     float max_iter = 100;
-    while(iter < max_iter && isBounded(z0)){
+    while(iter < max_iter && isBounded(z0))
+    {
         z0 = square(z0) + c;
         iter += 1.0;
     }

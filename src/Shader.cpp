@@ -47,12 +47,12 @@ void mbe::Shader::use()
     glUseProgram(mProgramID);
 }
 
-void mbe::Shader::set(const std::string &pName, float x, float y)
+void mbe::Shader::set(const std::string &pName, double x, double y)
 {
     GLint location{glGetUniformLocation(mProgramID, pName.c_str())};
     glUniform2f(location, x, y);
 }
-void mbe::Shader::set(const std::string &pName, float val)
+void mbe::Shader::set(const std::string &pName, double val)
 {
     GLint location{glGetUniformLocation(mProgramID, pName.c_str())};
     glUniform1f(location, val);

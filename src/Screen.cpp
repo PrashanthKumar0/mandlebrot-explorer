@@ -61,9 +61,9 @@ float lerp(float x0, float x1, float t)
 void mbe::Screen::handleInputs(Window &window)
 {
 
-    const float translateFac{mZoom * 0.1f};
-    const float lerpFactor{0.01};
-    const float zoomFactor{0.2f};
+    const double translateFac{mZoom * 0.1};
+    const double lerpFactor{0.01};
+    const double zoomFactor{0.2};
 
     // TODO : remove these
     system("cls"); 

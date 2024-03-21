@@ -22,8 +22,8 @@ namespace mbe
         GLuint mVBO{};
         GLuint mEBO{};
 
-        float mZoom{1.0f};
-        std::array<float, 2> mTranslate{0.0f, 0.0f};
+        double mZoom{1.0};
+        std::array<double, 2> mTranslate{0.0, 0.0};
 
         Shader mShader{"Mandlebrot"};
     };
