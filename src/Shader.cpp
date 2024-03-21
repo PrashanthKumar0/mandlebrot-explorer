@@ -47,6 +47,12 @@ void mbe::Shader::use()
     glUseProgram(mProgramID);
 }
 
+void mbe::Shader::set(const std::string &pName, float x, float y)
+{
+    GLint location{glGetUniformLocation(mProgramID, pName.c_str())};
+    glUniform2f(location, x, y);
+}
+
 // private helper methods
 
 GLuint compileShader(const std::string &code, GLenum shaderType)

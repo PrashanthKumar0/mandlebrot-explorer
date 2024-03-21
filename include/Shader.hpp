@@ -11,14 +11,15 @@ namespace mbe
     public:
         Shader(const std::string &shaderName);
         auto use() -> void;
-        
+        auto set(const std::string &pName, float x, float y) -> void;
+
     private:
         GLuint mProgramID{};
         GLuint mVSID{};
         GLuint mFSID{};
 
         // TODO : make this static and make a setter for it
-        std::string mBaseDir{"res/shaders/"}; 
+        std::string mBaseDir{"res/shaders/"};
     };
 }
 

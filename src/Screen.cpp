@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "Screen.hpp"
+#include "constants.hpp"
 
 mbe::Screen::Screen()
 {
@@ -37,6 +38,7 @@ mbe::Screen::Screen()
 void mbe::Screen::render()
 {
     mShader.use();
+    mShader.set("screenRes", mbe::constants::windowWidth, mbe::constants::windowHeight);
     glBindVertexArray(mVAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }

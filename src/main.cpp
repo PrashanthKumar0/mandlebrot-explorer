@@ -1,11 +1,11 @@
 #include "Window.hpp"
 #include "Screen.hpp"
+#include "constants.hpp"
 
 int main()
 {
-    constexpr int window_width{640};
-    constexpr int window_height{640};
-    mbe::Window window{window_width, window_height, "Mandlebrot Explorer."};
+
+    mbe::Window window{mbe::constants::windowWidth, mbe::constants::windowHeight, "Mandlebrot Explorer."};
     mbe::Screen screen{};
     
     while (window.isOpen())
