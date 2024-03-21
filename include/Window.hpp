@@ -13,7 +13,8 @@ namespace mbe
         Window(int width, int height, const std::string &title);
         auto isOpen() -> bool;
         auto sync() -> void;
-
+        auto isKeyPressed(int GLFW_KEY_NAME) -> bool;
+        
     private:
         GLFWwindow *mGLFWwindow{nullptr};
     };

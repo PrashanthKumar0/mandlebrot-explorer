@@ -3,6 +3,7 @@
 
 #include "Screen.hpp"
 #include "constants.hpp"
+#include "Window.hpp"
 
 mbe::Screen::Screen()
 {
@@ -38,7 +39,64 @@ mbe::Screen::Screen()
 void mbe::Screen::render()
 {
     mShader.use();
-    mShader.set("screenRes", mbe::constants::windowWidth, mbe::constants::windowHeight);
+
+    mShader.set("uTranslate", mTranslate[0], mTranslate[1]);
+    mShader.set("uZoom", mZoom);
+
+    mShader.set("uScreenRes", mbe::constants::windowWidth, mbe::constants::windowHeight);
     glBindVertexArray(mVAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+}
+
+#include <iostream>
+
+float lerp(float x0, float x1, float t)
+{
+    return x0 + (x1 - x0) * t;
+}
+
+void mbe::Screen::handleInputs(Window &window)
+{
+
+    const float translateFac{mZoom * 0.1f};
+    const float lerpFactor{0.01};
+    const float zoomFactor{0.2f};
+
+    system("cls");
+    std::cout << "mZoom        : " << mZoom << '\n';
+    std::cout << "Translate    : " << mTranslate[0] << "," << mTranslate[1] << '\n';
+
+    if (window.isKeyPressed(GLFW_KEY_Z))
+    {
+        mZoom = lerp(mZoom, mZoom * zoomFactor, lerpFactor);
+    }
+    if (window.isKeyPressed(GLFW_KEY_X))
+    {
+        mZoom = lerp(mZoom, mZoom / zoomFactor, lerpFactor);
+    }
+
+    if (window.isKeyPressed(GLFW_KEY_LEFT))
+    {
+        mTranslate[0] += translateFac;
+    }
+    if (window.isKeyPressed(GLFW_KEY_RIGHT))
+    {
+        mTranslate[0] -= translateFac;
+    }
+
+    if (window.isKeyPressed(GLFW_KEY_UP))
+    {
+        mTranslate[1] -= translateFac;
+    }
+    if (window.isKeyPressed(GLFW_KEY_DOWN))
+    {
+        mTranslate[1] += translateFac;
+    }
+
+    if (window.isKeyPressed(GLFW_KEY_R))
+    {
+        mZoom = 1.0f;
+        mTranslate[0] = 0.0f;
+        mTranslate[1] = 0.0f;
+    }
 }

@@ -52,6 +52,11 @@ void mbe::Shader::set(const std::string &pName, float x, float y)
     GLint location{glGetUniformLocation(mProgramID, pName.c_str())};
     glUniform2f(location, x, y);
 }
+void mbe::Shader::set(const std::string &pName, float val)
+{
+    GLint location{glGetUniformLocation(mProgramID, pName.c_str())};
+    glUniform1f(location, val);
+}
 
 // private helper methods
 

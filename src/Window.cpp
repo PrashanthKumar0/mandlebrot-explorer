@@ -44,3 +44,8 @@ void mbe::Window::sync()
     glfwSwapBuffers(mGLFWwindow);
     glfwPollEvents();
 }
+
+bool mbe::Window::isKeyPressed(int GLFW_KEY_NAME)
+{
+    return glfwGetKey(mGLFWwindow, GLFW_KEY_NAME) == GLFW_PRESS;
+}

@@ -11,6 +11,8 @@ int main()
     while (window.isOpen())
     {
         screen.render();
+        
+        screen.handleInputs(window);
         window.sync();
     }
 }

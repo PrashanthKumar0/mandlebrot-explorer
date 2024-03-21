@@ -12,6 +12,7 @@ namespace mbe
         Shader(const std::string &shaderName);
         auto use() -> void;
         auto set(const std::string &pName, float x, float y) -> void;
+        auto set(const std::string &pName, float val) -> void;
 
     private:
         GLuint mProgramID{};
