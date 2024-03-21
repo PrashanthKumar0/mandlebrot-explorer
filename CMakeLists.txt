@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_FLAGS -Wall)
 set(CMAKE_CXX_FLAGS -Wextra)
 set(CMAKE_CXX_FLAGS -pedantic-errors)
-set(CMAKE_CXX_FLAGS -mwindows)
+# set(CMAKE_CXX_FLAGS -mwindows) 
 
 
 # build dependencies (vendor dir)
@@ -26,3 +26,5 @@ target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_
 
 # add dependencies
 target_link_libraries(${CMAKE_PROJECT_NAME} glfw glad opengl32)
+
+file(COPY "res" DESTINATION "${CMAKE_BINARY_DIR}")

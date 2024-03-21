@@ -5,6 +5,7 @@
 
 
 @echo off
+cls
 
 @REM pushd simplifies things
 pushd build 

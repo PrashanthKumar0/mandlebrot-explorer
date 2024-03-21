@@ -1,6 +1,7 @@
 #ifndef _WINDOW_HPP_
 #define _WINDOW_HPP_
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <string>
 
