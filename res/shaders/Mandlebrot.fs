@@ -19,6 +19,7 @@ bool isBounded(vec2 vec)
     return vec.x * vec.x + vec.y * vec.y <= 5.0;
 }
 
+// hsl2rgb took form : https://www.shadertoy.com/view/XljGzV
 
 vec3 hsl2rgb(vec3 c )
 {
