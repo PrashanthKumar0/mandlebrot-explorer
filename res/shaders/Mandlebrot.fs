@@ -19,14 +19,24 @@ bool isBounded(vec2 vec)
     return vec.x * vec.x + vec.y * vec.y <= 5.0;
 }
 
-vec3 getColor(float iter)
+
+vec3 hsl2rgb(vec3 c )
 {
-    if(iter <= 0.3) return vec3(0.0);
-    // if(iter <= 0.3) return vec3(1.0,0.0,0.0);
-    if(iter <= 0.6) return vec3(iter,1.0,0.0);
-    if(iter <= 0.9) return vec3(1.0,iter,0.0);
-    
-    return vec3(0.0,0.0,0.0);
+    vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),6.0)-3.0)-1.0, 0.0, 1.0 );
+
+    return c.z + c.y * (rgb-0.5)*(1.0-abs(2.0*c.z-1.0));
+}
+
+vec3 getGradientColor(float iter) {
+    return hsl2rgb(vec3(iter * 360.0, 0.4, 0.6));
+}
+
+vec3 getColor(float iter, vec2 z)
+{
+    float norm = length(z);
+    vec3 pipes_mask = vec3(log2(sqrt(norm)));
+    vec3 color = getGradientColor(iter); 
+    return pipes_mask * color;
 }
 
 void main()
@@ -46,5 +56,5 @@ void main()
         iter += 1.0;
     }
 
-    fragColor = vec3(getColor(iter / max_iter));
+    fragColor = vec3(getColor(iter / max_iter, z0));
 }
